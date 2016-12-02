@@ -115,13 +115,37 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
         end
 
         // display the shape: Teal
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform_X] == 1'b1))
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platformL_X] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platformM1_X] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platformM2_X] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platformM3_X] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platformR_X] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        
         // else display the background
         else 
         begin 
