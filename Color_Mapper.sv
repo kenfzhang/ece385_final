@@ -26,21 +26,27 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 
     // parameters for the platforms
     logic platform_on;
-    logic [10:0] platform_X = 320; 
-	logic [10:0] platform_Y = 300;
-	logic [10:0] platform_size_X = 8; 
-	logic [10:0] platform_size_Y = 16;
+    logic [10:0] platformL_X = 240;
+    logic [10:0] platformM1_X = platformL_X + 16;
+    logic [10:0] platformM2_X = platformM1_X + 16;
+    logic [10:0] platformM3_X = platformM2_X + 16;
+    logic [10:0] platformR_X = platformM3_X + 16;
+	logic [10:0] platform_Y = 470;
+	logic [10:0] platform_size_X = 16; 
+	logic [10:0] platform_size_Y = 4;
 
     // font rom stuff, only used for doodle guy
     logic [10:0] sprite_addr;
     logic [7:0] sprite_data;
     font_rom (.addr(sprite_addr), .data(sprite_data));
     // font rom for platforms
+    logic [10:0] platform_addr;
     logic [15:0] platform_data;
-    platform_sprite(.addr(sprite_addr), .data(platform_data));
+    platform_sprite (.addr(platform_addr), .data(platform_data));
 
     always_comb
     begin:Ball_on_proc
+
         // drawing the ball sprite
 	    if(DrawX >= ball_X && DrawX < ball_X + ball_size_X &&
 			 DrawY >= ball_Y && DrawY < ball_Y + ball_size_Y)
@@ -49,14 +55,44 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 			platform_on = 1'b0;
             sprite_addr = (DrawY - ball_Y + 16*'h02);
 		 end
+
          // drawing the platform sprite
-		 else if(DrawX >= platform_X && DrawX < platform_X + platform_size_X &&
+		 else if(DrawX >= platformL_X && DrawX < platformL_X + platform_size_X &&
 			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            sprite_addr = (DrawY - platform_Y + 4*'h00);
+            platform_addr = (DrawY - platform_Y + 4*'h00);
 	    end
+        else if(DrawX >= platformM1_X && DrawX < platformM1_X + platform_size_X &&
+			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 4*'h01);
+	    end
+        else if(DrawX >= platformM2_X && DrawX < platformM2_X + platform_size_X &&
+			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 4*'h01);
+	    end
+        else if(DrawX >= platformM3_X && DrawX < platformM3_X + platform_size_X &&
+			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 4*'h01);
+	    end
+        else if(DrawX >= platformR_X && DrawX < platformR_X + platform_size_X &&
+			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 4*'h02);
+	    end
+
         // else, draw nothing
 		else
 		begin
