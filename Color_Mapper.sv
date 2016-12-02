@@ -17,24 +17,31 @@
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
                        output logic [7:0]  Red, Green, Blue );
     
+    // parameters for the doodle guy
     logic ball_on;
     logic [10:0] ball_X = 320; 
     logic [10:0] ball_Y = 240;
     logic [10:0] ball_size_X = 8; 
     logic [10:0] ball_size_Y = 16;
 
+    // parameters for the platforms
     logic platform_on;
     logic [10:0] platform_X = 320; 
 	logic [10:0] platform_Y = 300;
 	logic [10:0] platform_size_X = 8; 
 	logic [10:0] platform_size_Y = 16;
 
+    // font rom stuff, only used for doodle guy
     logic [10:0] sprite_addr;
     logic [7:0] sprite_data;
     font_rom (.addr(sprite_addr), .data(sprite_data));
+    // font rom for platforms
+    logic [15:0] platform_data;
+    platform_sprite(.addr(sprite_addr), .data(platform_data));
 
     always_comb
     begin:Ball_on_proc
+        // drawing the ball sprite
 	    if(DrawX >= ball_X && DrawX < ball_X + ball_size_X &&
 			 DrawY >= ball_Y && DrawY < ball_Y + ball_size_Y)
 		 begin
@@ -42,25 +49,28 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 			platform_on = 1'b0;
             sprite_addr = (DrawY - ball_Y + 16*'h02);
 		 end
+         // drawing the platform sprite
 		 else if(DrawX >= platform_X && DrawX < platform_X + platform_size_X &&
 			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            sprite_addr = (DrawY - platform_Y + 16*'h2d);
+            sprite_addr = (DrawY - platform_Y + 4*'h00);
 	    end
+        // else, draw nothing
 		else
 		begin
             ball_on = 1'b0;
 			platform_on = 1'b0;
             sprite_addr = 1'b0;
-		end 
+		end
+
     end 
        
     always_comb
     begin:RGB_Display
 
-        // display the bouncing ball: BLACK
+        // display the bouncing ball: Yellow
         if ((ball_on == 1'b1) && (sprite_data[DrawX - ball_X] == 1'b1)) 
         begin 
             Red = 8'h00;
@@ -68,8 +78,8 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
             Blue = 8'hff;
         end
 
-        // display the shape: BLACK
-        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform_X] == 1'b1))
+        // display the shape: Teal
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform_X] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
