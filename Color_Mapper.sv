@@ -24,10 +24,20 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
     logic [10:0] ball_size_X = 8; 
     logic [10:0] ball_size_Y = 16;
 
-    // parameters for the platforms
+    // turn on platform
     logic platform_on;
-    logic [10:0] platform_X = 240;
-	logic [10:0] platform_Y = 470;
+    logic [10:0] platform1_X1 = 240;
+    logic [10:0] platform1_X2 = platform1_X1 + platform_size_X;
+    logic [10:0] platform1_X3 = platform1_X2 + platform_size_X;
+    logic [10:0] platform1_X4 = platform1_X3 + platform_size_X;
+    logic [10:0] platform1_X5 = platform1_X4 + platform_size_X;
+    logic [10:0] platform1_X6 = platform1_X5 + platform_size_X;
+    logic [10:0] platform1_X7 = platform1_X6 + platform_size_X;
+    logic [10:0] platform1_X8 = platform1_X7 + platform_size_X;
+    logic [10:0] platform1_X9 = platform1_X8 + platform_size_X;
+    logic [10:0] platform1_X10 = platform1_X9 + platform_size_X;
+
+	logic [10:0] platform1_Y = 470;
 	logic [10:0] platform_size_X = 8; 
 	logic [10:0] platform_size_Y = 16;
 
@@ -48,9 +58,72 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
             sprite_addr = (DrawY - ball_Y + 16*'h02);
 		 end
 
-         // drawing the platform sprite
-		 else if(DrawX >= platform_X && DrawX < platform_X + platform_size_X &&
-			      DrawY >= platform_Y && DrawY < platform_Y + platform_size_Y)
+         // drawing the platform1 sprite
+		 else if(DrawX >= platform1_X1 && DrawX < platform1_X1 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X2 && DrawX < platform1_X2 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X3 && DrawX < platform1_X3 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X4 && DrawX < platform1_X4 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X5 && DrawX < platform1_X5 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X6 && DrawX < platform1_X6 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X7 && DrawX < platform1_X7 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X8 && DrawX < platform1_X8 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X9 && DrawX < platform1_X9 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            platform_addr = (DrawY - platform_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform1_X10 && DrawX < platform1_X10 + platform_size_X &&
+			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
@@ -79,7 +152,61 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
         end
 
         // display the platform
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform_X] == 1'b1))
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X1] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X2] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X3] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X4] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X5] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X6] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X7] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X8] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X9] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X10] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
