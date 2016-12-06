@@ -47,7 +47,7 @@ module  lab8 		( input         CLOCK_50,
     
     logic Reset_h, vssig, Clk;
     logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig;
-	 logic [15:0] keycode;
+	logic [15:0] keycode;
     
 	 assign Clk = CLOCK_50;
     assign {Reset_h}=~ (KEY[0]);  // The push buttons are active low

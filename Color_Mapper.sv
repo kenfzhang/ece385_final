@@ -19,10 +19,10 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
     
     // parameters for the doodle guy
     logic ball_on;
-    logic [10:0] ball_X = 320; 
-    logic [10:0] ball_Y = 240;
+    logic [10:0] ball_X = BallX; 
+    logic [10:0] ball_Y = BallY;
     logic [10:0] ball_size_X = 8; 
-    logic [10:0] ball_size_Y = 16;
+    logic [10:0] ball_size_Y = 10;
 
     // turn on platform
     logic platform_on;
