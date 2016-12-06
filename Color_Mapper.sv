@@ -28,40 +28,52 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
     logic platform_on;
     // Platform1 
     logic [10:0] platform1_X1 = 240;
-    logic [10:0] platform1_X2 = platform1_X1 + platform_size_X;
-    logic [10:0] platform1_X3 = platform1_X2 + platform_size_X;
-    logic [10:0] platform1_X4 = platform1_X3 + platform_size_X;
-    logic [10:0] platform1_X5 = platform1_X4 + platform_size_X;
-    logic [10:0] platform1_X6 = platform1_X5 + platform_size_X;
-    logic [10:0] platform1_X7 = platform1_X6 + platform_size_X;
-    logic [10:0] platform1_X8 = platform1_X7 + platform_size_X;
-    logic [10:0] platform1_X9 = platform1_X8 + platform_size_X;
-    logic [10:0] platform1_X10 = platform1_X9 + platform_size_X;
+    logic [10:0] platform1_X2 = 248;
+    logic [10:0] platform1_X3 = 256;
+    logic [10:0] platform1_X4 = 264;
+    logic [10:0] platform1_X5 = 272;
+    logic [10:0] platform1_X6 = 280;
+    logic [10:0] platform1_X7 = 288;
+    logic [10:0] platform1_X8 = 296;
+    logic [10:0] platform1_X9 = 304;
+    logic [10:0] platform1_X10 = 312;
     logic [10:0] platform1_Y = 470;
     // Platform2
-    // logic [10:0] platform2_X1 = 165;
-    // logic [10:0] platform2_X2 = platform2_X1 + platform_size_X;
-    // logic [10:0] platform2_X3 = platform2_X2 + platform_size_X;
-    // logic [10:0] platform2_X4 = platform2_X3 + platform_size_X;
-    // logic [10:0] platform2_X5 = platform2_X4 + platform_size_X;
-    // logic [10:0] platform2_X6 = platform2_X5 + platform_size_X;
-    // logic [10:0] platform2_X7 = platform2_X6 + platform_size_X;
-    // logic [10:0] platform2_X8 = platform2_X7 + platform_size_X;
-    // logic [10:0] platform2_X9 = platform2_X8 + platform_size_X;
-    // logic [10:0] platform2_X10 = platform2_X9 + platform_size_X;
-    // logic [10:0] platform2_Y = 455;
+    logic [10:0] platform2_X1 = 165;
+    logic [10:0] platform2_X2 = 173;
+    logic [10:0] platform2_X3 = 181;
+    logic [10:0] platform2_X4 = 189;
+    logic [10:0] platform2_X5 = 197;
+    logic [10:0] platform2_X6 = 205;
+    logic [10:0] platform2_X7 = 213;
+    logic [10:0] platform2_X8 = 221;
+    logic [10:0] platform2_X9 = 229;
+    logic [10:0] platform2_X10 = 237;
+    logic [10:0] platform2_Y = 455;
     // Platform3
-    // logic [10:0] platform3_X1 = 317;
-    // logic [10:0] platform3_X2 = platform3_X1 + platform_size_X;
-    // logic [10:0] platform3_X3 = platform3_X2 + platform_size_X;
-    // logic [10:0] platform3_X4 = platform3_X3 + platform_size_X;
-    // logic [10:0] platform3_X5 = platform3_X4 + platform_size_X;
-    // logic [10:0] platform3_X6 = platform3_X5 + platform_size_X;
-    // logic [10:0] platform3_X7 = platform3_X6 + platform_size_X;
-    // logic [10:0] platform3_X8 = platform3_X7 + platform_size_X;
-    // logic [10:0] platform3_X9 = platform3_X8 + platform_size_X;
-    // logic [10:0] platform3_X10 = platform3_X9 + platform_size_X;
-    // logic [10:0] platform3_Y = 450;
+    logic [10:0] platform3_X1 = 317;
+    logic [10:0] platform3_X2 = 325;
+    logic [10:0] platform3_X3 = 333;
+    logic [10:0] platform3_X4 = 341;
+    logic [10:0] platform3_X5 = 349;
+    logic [10:0] platform3_X6 = 357;
+    logic [10:0] platform3_X7 = 365;
+    logic [10:0] platform3_X8 = 373;
+    logic [10:0] platform3_X9 = 381;
+    logic [10:0] platform3_X10 = 389;
+    logic [10:0] platform3_Y = 450;
+    // Platform4
+    // logic [10:0] platform4_X1 = 250;
+    // logic [10:0] platform4_X2 = 258;
+    // logic [10:0] platform4_X3 = 266;
+    // logic [10:0] platform4_X4 = 274;
+    // logic [10:0] platform4_X5 = 272;
+    // logic [10:0] platform4_X6 = 280;
+    // logic [10:0] platform4_X7 = 288;
+    // logic [10:0] platform4_X8 = 296;
+    // logic [10:0] platform4_X9 = 304;
+    // logic [10:0] platform4_X10 = 312;
+    // logic [10:0] platform4_Y = 243;
 
 	logic [10:0] platform_size_X = 8; 
 	logic [10:0] platform_size_Y = 16;
@@ -89,215 +101,215 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	     end
         else if(DrawX >= platform1_X2 && DrawX < platform1_X2 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X3 && DrawX < platform1_X3 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X4 && DrawX < platform1_X4 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X5 && DrawX < platform1_X5 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X6 && DrawX < platform1_X6 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X7 && DrawX < platform1_X7 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X8 && DrawX < platform1_X8 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X9 && DrawX < platform1_X9 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
         else if(DrawX >= platform1_X10 && DrawX < platform1_X10 + platform_size_X &&
 			      DrawY >= platform1_Y && DrawY < platform1_Y + platform_size_Y)
 		 begin
 			ball_on = 1'b0;
 			platform_on = 1'b1;
-            platform_addr = (DrawY - platform1_Y + 16*'h00);
+            sprite_addr = (DrawY - platform1_Y + 16*'h00);
 	    end
 
         // drawing the platform2 sprite
-		//  else if(DrawX >= platform2_X1 && DrawX < platform2_X1 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    //  end
-        // else if(DrawX >= platform2_X2 && DrawX < platform2_X2 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X3 && DrawX < platform2_X3 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X4 && DrawX < platform2_X4 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X5 && DrawX < platform2_X5 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X6 && DrawX < platform2_X6 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X7 && DrawX < platform2_X7 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X8 && DrawX < platform2_X8 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X9 && DrawX < platform2_X9 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform2_X10 && DrawX < platform2_X10 + platform_size_X &&
-		// 	      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform2_Y + 16*'h00);
-	    // end
+		 else if(DrawX >= platform2_X1 && DrawX < platform2_X1 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	     end
+        else if(DrawX >= platform2_X2 && DrawX < platform2_X2 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X3 && DrawX < platform2_X3 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X4 && DrawX < platform2_X4 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X5 && DrawX < platform2_X5 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X6 && DrawX < platform2_X6 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X7 && DrawX < platform2_X7 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X8 && DrawX < platform2_X8 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X9 && DrawX < platform2_X9 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform2_X10 && DrawX < platform2_X10 + platform_size_X &&
+			      DrawY >= platform2_Y && DrawY < platform2_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform2_Y + 16*'h00);
+	    end
 
         // drawing the platform3 sprite
-		//  else if(DrawX >= platform3_X1 && DrawX < platform3_X1 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    //  end
-        // else if(DrawX >= platform3_X2 && DrawX < platform3_X2 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X3 && DrawX < platform3_X3 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X4 && DrawX < platform3_X4 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X5 && DrawX < platform3_X5 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X6 && DrawX < platform3_X6 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X7 && DrawX < platform3_X7 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X8 && DrawX < platform3_X8 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X9 && DrawX < platform3_X9 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
-        // else if(DrawX >= platform3_X10 && DrawX < platform3_X10 + platform_size_X &&
-		// 	      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
-		//  begin
-		// 	ball_on = 1'b0;
-		// 	platform_on = 1'b1;
-        //     platform_addr = (DrawY - platform3_Y + 16*'h00);
-	    // end
+		 else if(DrawX >= platform3_X1 && DrawX < platform3_X1 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	     end
+        else if(DrawX >= platform3_X2 && DrawX < platform3_X2 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X3 && DrawX < platform3_X3 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X4 && DrawX < platform3_X4 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X5 && DrawX < platform3_X5 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X6 && DrawX < platform3_X6 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X7 && DrawX < platform3_X7 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X8 && DrawX < platform3_X8 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X9 && DrawX < platform3_X9 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
+        else if(DrawX >= platform3_X10 && DrawX < platform3_X10 + platform_size_X &&
+			      DrawY >= platform3_Y && DrawY < platform3_Y + platform_size_Y)
+		 begin
+			ball_on = 1'b0;
+			platform_on = 1'b1;
+            sprite_addr = (DrawY - platform3_Y + 16*'h00);
+	    end
 
         // else, draw nothing
 		else
@@ -321,61 +333,61 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
         end
 
         // display the platform1
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X1] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X1] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X2] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X2] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X3] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X3] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X4] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X4] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X5] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X5] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X6] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X6] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X7] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X7] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X8] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X8] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X9] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X9] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
             Blue = 8'h00;
         end
-        else if ((platform_on == 1'b1) && (platform_data[DrawX - platform1_X10] == 1'b1))
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform1_X10] == 1'b1))
         begin
             Red = 8'hff;
             Green = 8'hff;
@@ -383,128 +395,128 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
         end
 
         // display the platform2
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X1] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X2] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X3] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X4] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X5] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X6] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X7] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X8] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X9] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform2_X10] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X1] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X2] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X3] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X4] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X5] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X6] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X7] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X8] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X9] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform2_X10] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
         
         // display the platform3
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X1] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X2] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X3] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X4] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X5] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X6] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X7] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X8] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X9] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
-        // else if ((platform_on == 1'b1) && (platform_data[DrawX - platform3_X10] == 1'b1))
-        // begin
-        //     Red = 8'hff;
-        //     Green = 8'hff;
-        //     Blue = 8'h00;
-        // end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X1] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X2] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X3] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X4] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X5] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X6] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X7] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X8] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X9] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
+        else if ((platform_on == 1'b1) && (sprite_data[DrawX - platform3_X10] == 1'b1))
+        begin
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'h00;
+        end
 
         // else display the background
         else 
