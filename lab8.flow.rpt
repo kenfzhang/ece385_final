@@ -1,5 +1,5 @@
 Flow report for lab8
-Tue Nov 29 23:29:45 2016
+Tue Dec 06 22:47:58 2016
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Full Version
 
 
@@ -41,17 +41,17 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Nov 29 23:29:38 2016       ;
+; Flow Status                        ; Successful - Tue Dec 06 22:47:51 2016       ;
 ; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Full Version ;
 ; Revision Name                      ; lab8                                        ;
 ; Top-level Entity Name              ; lab8                                        ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 4,076 / 114,480 ( 4 % )                     ;
-;     Total combinational functions  ; 3,563 / 114,480 ( 3 % )                     ;
-;     Dedicated logic registers      ; 1,998 / 114,480 ( 2 % )                     ;
-; Total registers                    ; 2067                                        ;
+; Total logic elements               ; 4,475 / 114,480 ( 4 % )                     ;
+;     Total combinational functions  ; 3,956 / 114,480 ( 3 % )                     ;
+;     Dedicated logic registers      ; 2,033 / 114,480 ( 2 % )                     ;
+; Total registers                    ; 2102                                        ;
 ; Total pins                         ; 128 / 529 ( 24 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 11,392 / 3,981,312 ( < 1 % )                ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/29/2016 23:28:23 ;
+; Start date & time ; 12/06/2016 22:46:29 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab8                ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +-------------------------------------+---------------------------------------------------------------+---------------+-----------------+------------+
 ; Assignment Name                     ; Value                                                         ; Default Value ; Entity Name     ; Section Id ;
 +-------------------------------------+---------------------------------------------------------------+---------------+-----------------+------------+
-; COMPILER_SIGNATURE_ID               ; 71094330539521.148048370210076                                ; --            ; --              ; --         ;
+; COMPILER_SIGNATURE_ID               ; 71094330539528.148108598807900                                ; --            ; --              ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                            ; --            ; --              ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                             ; --            ; --              ; --         ;
 ; MISC_FILE                           ; lab8_soc/synthesis/../nios_system.cmp                         ; --            ; --              ; --         ;
@@ -102,11 +102,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:40     ; 1.0                     ; 856 MB              ; 00:01:05                           ;
-; Fitter                    ; 00:00:24     ; 1.4                     ; 1694 MB             ; 00:00:31                           ;
-; Assembler                 ; 00:00:05     ; 1.0                     ; 627 MB              ; 00:00:04                           ;
-; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 842 MB              ; 00:00:04                           ;
-; Total                     ; 00:01:13     ; --                      ; --                  ; 00:01:44                           ;
+; Analysis & Synthesis      ; 00:00:45     ; 1.0                     ; 877 MB              ; 00:01:11                           ;
+; Fitter                    ; 00:00:25     ; 1.5                     ; 1711 MB             ; 00:00:32                           ;
+; Assembler                 ; 00:00:04     ; 1.0                     ; 635 MB              ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 851 MB              ; 00:00:04                           ;
+; Total                     ; 00:01:19     ; --                      ; --                  ; 00:01:51                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -115,10 +115,10 @@ agreement for further details.
 +---------------------------+------------------+-----------+------------+----------------+
 ; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
 +---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; ECEB-3022-04     ; Windows 7 ; 6.1        ; x86_64         ;
-; Fitter                    ; ECEB-3022-04     ; Windows 7 ; 6.1        ; x86_64         ;
-; Assembler                 ; ECEB-3022-04     ; Windows 7 ; 6.1        ; x86_64         ;
-; TimeQuest Timing Analyzer ; ECEB-3022-04     ; Windows 7 ; 6.1        ; x86_64         ;
+; Analysis & Synthesis      ; ECEB-3022-02     ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; ECEB-3022-02     ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; ECEB-3022-02     ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; ECEB-3022-02     ; Windows 7 ; 6.1        ; x86_64         ;
 +---------------------------+------------------+-----------+------------+----------------+
 
 
