@@ -14,13 +14,13 @@
 
 
 
-module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
+module  color_mapper ( input        [10:0] BallX, BallY, DrawX, DrawY, Ball_size,
                        output logic [7:0]  Red, Green, Blue );
     
     // parameters for the doodle guy
     logic ball_on;
-    logic [10:0] ball_X = BallX; 
-    logic [10:0] ball_Y = BallY;
+    //logic [10:0] BallX = BallX; 
+    //logic [10:0] BallY = BallY;
     logic [10:0] ball_size_X = 8; 
     logic [10:0] ball_size_Y = 10;
 
@@ -87,12 +87,12 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
     begin:Ball_on_proc
 
         // drawing the ball sprite
-	    if(DrawX >= ball_X && DrawX < ball_X + ball_size_X &&
-			 DrawY >= ball_Y && DrawY < ball_Y + ball_size_Y)
+	    if(DrawX >= BallX && DrawX < BallX + ball_size_X &&
+			 DrawY >= BallY && DrawY < BallY + ball_size_Y)
 		 begin
 			ball_on = 1'b1;
 			platform_on = 1'b0;
-            sprite_addr = (DrawY - ball_Y + 16*'h02);
+            sprite_addr = (DrawY - BallY + 16*'h02);
 		 end
 
          // drawing the platform1 sprite
@@ -325,7 +325,7 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
     begin:RGB_Display
 
         // display the bouncing ball
-        if ((ball_on == 1'b1) && (sprite_data[DrawX - ball_X] == 1'b1)) 
+        if ((ball_on == 1'b1) && (sprite_data[DrawX - BallX] == 1'b1)) 
         begin 
             Red = 8'h00;
             Green = 8'hff;

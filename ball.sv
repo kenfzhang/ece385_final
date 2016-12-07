@@ -15,12 +15,12 @@
 
 module  ball ( input Reset, frame_clk,
 				input [7:0] keycode,
-               	output [9:0]  BallX, BallY, BallS );
+               	output [10:0]  BallX, BallY, BallS );
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_SizeX, Ball_SizeY, Ball_Mid;
-	
+	logic [9:0] a, b;
 	logic [9:0] curr_height, falling_height;
-	logic t;
+	logic [9:0] t;
 	 
     parameter [9:0] Ball_X_start = 280;  // Initial position on the X axis
     parameter [9:0] Ball_Y_start = 460;  // Initial position on the Y axis
@@ -32,6 +32,10 @@ module  ball ( input Reset, frame_clk,
     
 	parameter [9:0] Ball_X_Step=1;      // Step size on the X axis
     parameter [9:0] Ball_Y_Step=1;      // Step size on the Y axis
+	 
+	 logic bool1 = 0;
+	 logic bool2 = 0;
+	 logic bool3 = 0;
  
 
     assign Ball_SizeX = 8;
@@ -157,20 +161,37 @@ module  ball ( input Reset, frame_clk,
 							Ball_X_Motion <= Ball_X_Motion;
 					end
 				// Check whether we hit a platform
-				else if (/*WE HIT A PLATFORM*/)
+				else if ( (Ball_Y_Motion > 0) && (Ball_X_Pos + Ball_Mid) >= 240 && (Ball_X_Pos + Ball_Mid) <= 320 && (Ball_Y_Pos + Ball_SizeY) < 470 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 470 - 4'd5)					
 					begin
-						t = 0;
-						falling (.t(t), .v(Ball_Y_Motion), .final_height(falling_height));
-						Ball_Y_Motion <= falling_height;
-						Ball_X_Motion <= 0;
+						Ball_Y_Motion <= -3;
+						
+
+						
+						
+						//Ball_Y_Motion <= falling_height;
+						//Ball_X_Motion <= 0;
 					end
 				// If we dont hit a platform
 				else
 					begin
-						falling (.t(t), .v(Ball_Y_Motion), .final_height(falling_height));
-						t = t + 1;
-						Ball_Y_Motion <= falling_height; // Ball is somewhere in the middle, keep bouncing in position
-						Ball_X_Motion <= 0;  // Ball is somewhere in the middle and no button is pressed, X motion no change
+						bool1 <= ~bool1;
+						if(bool1 == 0)
+						begin
+							bool2 <= ~bool2;
+							if(bool2 == 0)
+							begin
+								bool3 <= ~bool3;
+								if(bool3 == 0)
+								begin
+									Ball_Y_Motion <= Ball_Y_Motion + 1;
+								end
+							end
+							
+						end						
+
+						//Ball_Y_Motion <= Ball_Y_Motion + 1;
+						//Ball_Y_Motion <= Ball_Y_Motion; // Ball is somewhere in the middle, keep bouncing in position
+						//Ball_Y_Motion <= -1;  // Ball is somewhere in the middle and no button is pressed, X motion no change
 					end
 				 //Ball_X_Motion <= Ball_X_Motion;  // You need to remove this and make both X and Y respond to keyboard input
 				 
