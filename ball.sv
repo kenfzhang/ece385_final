@@ -15,7 +15,7 @@
 
 module  ball ( input Reset, frame_clk,
 				input [7:0] keycode,
-               	output [10:0]  BallX, BallY, BallS );
+               	output [10:0]  BallX, BallY, BallS, output logic gg );
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_SizeX, Ball_SizeY, Ball_Mid;
 	logic [9:0] a, b;
@@ -36,6 +36,8 @@ module  ball ( input Reset, frame_clk,
 	 logic bool1 = 0;
 	 logic bool2 = 0;
 	 logic bool3 = 0;
+
+	 logic over = 0;
  
 
     assign Ball_SizeX = 8;
@@ -110,8 +112,10 @@ module  ball ( input Reset, frame_clk,
 				// TODO: MAKE SURE IF THIS CONDITION IS MET, END GAME
 				else if( (Ball_Y_Pos + Ball_SizeY) >= Ball_Y_Max && (Ball_X_Pos + Ball_SizeX) < Ball_X_Max && (Ball_X_Pos) > Ball_X_Min)
 						begin
-						Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
+						Ball_Y_Motion <= 0;
 						Ball_X_Motion <= 0;
+
+						over = 1;
 						end
 				// If we hit the top of the screen
 				else if( (Ball_Y_Pos) <= Ball_Y_Min && (Ball_X_Pos + Ball_SizeX) < Ball_X_Max && (Ball_X_Pos) > Ball_X_Min)
@@ -132,23 +136,31 @@ module  ball ( input Reset, frame_clk,
 						Ball_Y_Motion <= 0;
 						end
 				// check the keycodes
-				else if(keycode == 8'd26 || keycode == 8'd22)
+				// else if(keycode == 8'd26 || keycode == 8'd22)
+				// 	begin
+				// 		Ball_X_Motion <= 10'd0;
+				// 		if(keycode == 8'd26 && Ball_Y_Motion == Ball_Y_Step)
+				// 			Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
+				// 		else if(keycode == 8'd22 && Ball_Y_Motion == (~ (Ball_Y_Step) + 1'b1))
+				// 			Ball_Y_Motion <= Ball_Y_Step;
+				// 		else if( (Ball_Y_Motion == 10'd0) && keycode == 8'd26)
+				// 				Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
+				// 		else if( (Ball_Y_Motion == 10'd0) && keycode == 8'd22)
+				// 				Ball_Y_Motion <= Ball_Y_Step;
+				// 		else
+				// 			Ball_Y_Motion <= Ball_Y_Motion;
+				// 	end
+				// When we press the A or D key
+				else if ( (Ball_Y_Motion > 0) && ((Ball_X_Pos + Ball_Mid) >= 240 && (Ball_X_Pos + Ball_Mid) <= 320 && (Ball_Y_Pos + Ball_SizeY) < 470 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 470 - 4'd5)
+								|| ((Ball_X_Pos + Ball_Mid) >= 165 && (Ball_X_Pos + Ball_Mid) <= 247 && (Ball_Y_Pos + Ball_SizeY) < 455 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 455 - 4'd5)
+								|| ((Ball_X_Pos + Ball_Mid) >= 317 && (Ball_X_Pos + Ball_Mid) <= 389 && (Ball_Y_Pos + Ball_SizeY) < 450 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 450 - 4'd5)
+											)			
 					begin
-						Ball_X_Motion <= 10'd0;
-						if(keycode == 8'd26 && Ball_Y_Motion == Ball_Y_Step)
-							Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
-						else if(keycode == 8'd22 && Ball_Y_Motion == (~ (Ball_Y_Step) + 1'b1))
-							Ball_Y_Motion <= Ball_Y_Step;
-						else if( (Ball_Y_Motion == 10'd0) && keycode == 8'd26)
-								Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
-						else if( (Ball_Y_Motion == 10'd0) && keycode == 8'd22)
-								Ball_Y_Motion <= Ball_Y_Step;
-						else
-							Ball_Y_Motion <= Ball_Y_Motion;
+						Ball_Y_Motion <= -3;
 					end
 				else if(keycode == 8'd4 || keycode == 8'd7)
 					begin
-						Ball_Y_Motion <= 10'd0;
+						//Ball_Y_Motion <= 10'd0;
 						if(keycode == 8'd7 && Ball_X_Motion == (~ (Ball_X_Step) + 1'b1))
 							Ball_X_Motion <= Ball_X_Step;
 						else if(keycode == 8'd4 && Ball_X_Motion == Ball_X_Step)
@@ -159,17 +171,28 @@ module  ball ( input Reset, frame_clk,
 							Ball_X_Motion <= Ball_X_Step;
 						else
 							Ball_X_Motion <= Ball_X_Motion;
+						bool1 <= ~bool1;
+						if(bool1 == 0)
+						begin
+							bool2 <= ~bool2;
+							if(bool2 == 0)
+							begin
+								bool3 <= ~bool3;
+								if(bool3 == 0)
+								begin
+									Ball_Y_Motion <= Ball_Y_Motion + 1;
+								end
+							end
+							
+						end						
 					end
 				// Check whether we hit a platform
-				else if ( (Ball_Y_Motion > 0) && (Ball_X_Pos + Ball_Mid) >= 240 && (Ball_X_Pos + Ball_Mid) <= 320 && (Ball_Y_Pos + Ball_SizeY) < 470 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 470 - 4'd5)					
+				else if ( (Ball_Y_Motion > 0) && ((Ball_X_Pos + Ball_Mid) >= 240 && (Ball_X_Pos + Ball_Mid) <= 320 && (Ball_Y_Pos + Ball_SizeY) < 470 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 470 - 4'd5)
+							|| ((Ball_X_Pos + Ball_Mid) >= 165 && (Ball_X_Pos + Ball_Mid) <= 247 && (Ball_Y_Pos + Ball_SizeY) < 455 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 455 - 4'd5)
+							|| ((Ball_X_Pos + Ball_Mid) >= 317 && (Ball_X_Pos + Ball_Mid) <= 389 && (Ball_Y_Pos + Ball_SizeY) < 450 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 450 - 4'd5)
+											)			
 					begin
 						Ball_Y_Motion <= -3;
-						
-
-						
-						
-						//Ball_Y_Motion <= falling_height;
-						//Ball_X_Motion <= 0;
 					end
 				// If we dont hit a platform
 				else
@@ -216,6 +239,7 @@ module  ball ( input Reset, frame_clk,
    
     assign BallY = Ball_Y_Pos;
    
+	assign gg = over;
     //assign BallS = Ball_Size;
     
 
