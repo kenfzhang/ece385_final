@@ -48,7 +48,8 @@ module  lab8 		( input         CLOCK_50,
     logic Reset_h, vssig, Clk;
     logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig;
 	logic [15:0] keycode;
-    
+    logic [6:0] count;
+
 	 assign Clk = CLOCK_50;
     assign {Reset_h}=~ (KEY[0]);  // The push buttons are active low
 	
@@ -99,12 +100,15 @@ module  lab8 		( input         CLOCK_50,
 	//Fill in the connections for the rest of the modules 
    vga_controller vgasync_instance(.Clk(Clk), .Reset(0), .hs(VGA_HS), .vs(VGA_VS), .pixel_clk(VGA_CLK), .blank(VGA_BLANK_N), .sync(VGA_SYNC_N), .DrawX(drawxsig), .DrawY(drawysig));
    
-   ball ball_instance(.Reset(Reset_h), .keycode(keycode), .frame_clk(VGA_VS), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig));
+   ball ball_instance(.Reset(Reset_h), .keycode(keycode), .frame_clk(VGA_VS), .BallX(ballxsig), .BallY(ballysig), .BallS(ballsizesig), .count(count));
    
    color_mapper color_instance(.BallX(ballxsig), .BallY(ballysig), .DrawX(drawxsig), .DrawY(drawysig), .Ball_size(ballsizesig), .Red(VGA_R), .Green(VGA_G), .Blue(VGA_B));
-										  
-	 HexDriver hex_inst_0 (keycode[3:0], HEX0);
-	 HexDriver hex_inst_1 (keycode[7:4], HEX1);
+
+	assign HEX0 = count;
+	assign HEX1 = count;
+
+	HexDriver hex_inst_0 (keycode[3:0], HEX0);
+	HexDriver hex_inst_1 (keycode[7:4], HEX1);
     
 
 	 /**************************************************************************************

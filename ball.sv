@@ -15,13 +15,15 @@
 
 module  ball ( input Reset, frame_clk,
 				input [7:0] keycode,
-               	output [10:0]  BallX, BallY, BallS );
+               	output [10:0]  BallX, BallY, BallS, output [6:0] count);
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_SizeX, Ball_SizeY, Ball_Mid;
 	logic [9:0] a, b;
 	logic [9:0] curr_height, falling_height;
 	logic [9:0] t;
-	 
+	
+	logic [6:0] counter;
+
     parameter [9:0] Ball_X_start = 280;  // Initial position on the X axis
     parameter [9:0] Ball_Y_start = 460;  // Initial position on the Y axis
     
@@ -153,6 +155,7 @@ module  ball ( input Reset, frame_clk,
 											)			
 					begin
 						Ball_Y_Motion <= -3;
+						count <= (count + 1);
 					end
 				else if(keycode == 8'd4 || keycode == 8'd7)
 					begin
@@ -189,6 +192,7 @@ module  ball ( input Reset, frame_clk,
 											)			
 					begin
 						Ball_Y_Motion <= -3;
+						count <= (count + 1);
 					end
 				// If we dont hit a platform
 				else
@@ -236,7 +240,8 @@ module  ball ( input Reset, frame_clk,
    
     assign BallY = Ball_Y_Pos;
    
-    //assign BallS = Ball_Size;
+    assign count = counter;
+	//assign BallS = Ball_Size;
     
 
 endmodule
