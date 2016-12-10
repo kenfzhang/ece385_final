@@ -109,6 +109,7 @@ module  ball ( input Reset, frame_clk,
 						end
 				// If we hit the bottom of the screen
 				// TODO: MAKE SURE IF THIS CONDITION IS MET, END GAME
+				// Clears the jump counter when we hit the bottom of the screen
 				else if( (Ball_Y_Pos + Ball_SizeY) >= Ball_Y_Max && (Ball_X_Pos + Ball_SizeX) < Ball_X_Max && (Ball_X_Pos) > Ball_X_Min)
 						begin
 						Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
