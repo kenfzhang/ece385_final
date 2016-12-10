@@ -73,19 +73,19 @@ module  color_mapper ( input        [10:0] BallX, BallY, DrawX, DrawY, Ball_size
      logic [10:0] platform4_X8 = 296;
      logic [10:0] platform4_X9 = 304;
      logic [10:0] platform4_X10 = 312;
-     logic [10:0] platform4_Y = 243;
+     logic [10:0] platform4_Y = 400;
     // Platform5
-     logic [10:0] platform5_X1 = 260;
-     logic [10:0] platform5_X2 = 268;
-     logic [10:0] platform5_X3 = 276;
-     logic [10:0] platform5_X4 = 284;
-     logic [10:0] platform5_X5 = 292;
-     logic [10:0] platform5_X6 = 300;
-     logic [10:0] platform5_X7 = 308;
-     logic [10:0] platform5_X8 = 316;
-     logic [10:0] platform5_X9 = 324;
-     logic [10:0] platform5_X10 = 332;
-     logic [10:0] platform5_Y = 436;
+     logic [10:0] platform5_X1 = 290;
+     logic [10:0] platform5_X2 = 298;
+     logic [10:0] platform5_X3 = 306;
+     logic [10:0] platform5_X4 = 314;
+     logic [10:0] platform5_X5 = 322;
+     logic [10:0] platform5_X6 = 330;
+     logic [10:0] platform5_X7 = 338;
+     logic [10:0] platform5_X8 = 346;
+     logic [10:0] platform5_X9 = 354;
+     logic [10:0] platform5_X10 = 362;
+     logic [10:0] platform5_Y = 422;
     // Platform6
      logic [10:0] platform6_X1 = 180;
      logic [10:0] platform6_X2 = 188;
@@ -97,7 +97,7 @@ module  color_mapper ( input        [10:0] BallX, BallY, DrawX, DrawY, Ball_size
      logic [10:0] platform6_X8 = 236;
      logic [10:0] platform6_X9 = 244;
      logic [10:0] platform6_X10 = 252;
-     logic [10:0] platform6_Y = 428;
+     logic [10:0] platform6_Y = 385;
     // Platform7
      logic [10:0] platform7_X1 = 130;
      logic [10:0] platform7_X2 = 138;
@@ -109,7 +109,7 @@ module  color_mapper ( input        [10:0] BallX, BallY, DrawX, DrawY, Ball_size
      logic [10:0] platform7_X8 = 186;
      logic [10:0] platform7_X9 = 194;
      logic [10:0] platform7_X10 = 202;
-     logic [10:0] platform7_Y = 417;
+     logic [10:0] platform7_Y = 352;
     // Platform8
      logic [10:0] platform8_X1 = 330;
      logic [10:0] platform8_X2 = 338;
@@ -121,7 +121,7 @@ module  color_mapper ( input        [10:0] BallX, BallY, DrawX, DrawY, Ball_size
      logic [10:0] platform8_X8 = 386;
      logic [10:0] platform8_X9 = 394;
      logic [10:0] platform8_X10 = 402;
-     logic [10:0] platform8_Y = 403;	 
+     logic [10:0] platform8_Y = 377;	 
 	  
 	  
 	logic [10:0] platform_size_X = 8; 

@@ -15,15 +15,14 @@
 
 module  ball ( input Reset, frame_clk,
 				input [7:0] keycode,
-               	output [10:0]  BallX, BallY, BallS, output [6:0] count);
+               	output [10:0]  BallX, BallY, BallS, output logic [15:0] count );
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_SizeX, Ball_SizeY, Ball_Mid;
 	logic [9:0] a, b;
 	logic [9:0] curr_height, falling_height;
 	logic [9:0] t;
-	
-	logic [6:0] counter;
-
+	logic [15:0] jump_counter = 0;
+	 
     parameter [9:0] Ball_X_start = 280;  // Initial position on the X axis
     parameter [9:0] Ball_Y_start = 460;  // Initial position on the Y axis
     
@@ -114,6 +113,7 @@ module  ball ( input Reset, frame_clk,
 						begin
 						Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);
 						Ball_X_Motion <= 0;
+						jump_counter <= 0;
 						end
 				// If we hit the top of the screen
 				else if( (Ball_Y_Pos) <= Ball_Y_Min && (Ball_X_Pos + Ball_SizeX) < Ball_X_Max && (Ball_X_Pos) > Ball_X_Min)
@@ -152,10 +152,15 @@ module  ball ( input Reset, frame_clk,
 				else if ( (Ball_Y_Motion > 0) && ((Ball_X_Pos + Ball_Mid) >= 240 && (Ball_X_Pos + Ball_Mid) <= 320 && (Ball_Y_Pos + Ball_SizeY) < 470 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 470 - 4'd5)
 														|| ((Ball_X_Pos + Ball_Mid) >= 165 && (Ball_X_Pos + Ball_Mid) <= 247 && (Ball_Y_Pos + Ball_SizeY) < 455 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 455 - 4'd5)
 														|| ((Ball_X_Pos + Ball_Mid) >= 317 && (Ball_X_Pos + Ball_Mid) <= 389 && (Ball_Y_Pos + Ball_SizeY) < 450 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 450 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 250 && (Ball_X_Pos + Ball_Mid) <= 322 && (Ball_Y_Pos + Ball_SizeY) < 400 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 400 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 290 && (Ball_X_Pos + Ball_Mid) <= 362 && (Ball_Y_Pos + Ball_SizeY) < 422 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 422 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 180 && (Ball_X_Pos + Ball_Mid) <= 252 && (Ball_Y_Pos + Ball_SizeY) < 385 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 385 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 130 && (Ball_X_Pos + Ball_Mid) <= 202 && (Ball_Y_Pos + Ball_SizeY) < 352 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 352 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 330 && (Ball_X_Pos + Ball_Mid) <= 402 && (Ball_Y_Pos + Ball_SizeY) < 377 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 377 - 4'd5)
 											)			
 					begin
 						Ball_Y_Motion <= -3;
-						count <= (count + 1);
+						jump_counter <= jump_counter + 1;
 					end
 				else if(keycode == 8'd4 || keycode == 8'd7)
 					begin
@@ -189,10 +194,15 @@ module  ball ( input Reset, frame_clk,
 				else if ( (Ball_Y_Motion > 0) && ((Ball_X_Pos + Ball_Mid) >= 240 && (Ball_X_Pos + Ball_Mid) <= 320 && (Ball_Y_Pos + Ball_SizeY) < 470 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 470 - 4'd5)
 														|| ((Ball_X_Pos + Ball_Mid) >= 165 && (Ball_X_Pos + Ball_Mid) <= 247 && (Ball_Y_Pos + Ball_SizeY) < 455 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 455 - 4'd5)
 														|| ((Ball_X_Pos + Ball_Mid) >= 317 && (Ball_X_Pos + Ball_Mid) <= 389 && (Ball_Y_Pos + Ball_SizeY) < 450 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 450 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 250 && (Ball_X_Pos + Ball_Mid) <= 322 && (Ball_Y_Pos + Ball_SizeY) < 400 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 400 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 290 && (Ball_X_Pos + Ball_Mid) <= 362 && (Ball_Y_Pos + Ball_SizeY) < 422 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 422 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 180 && (Ball_X_Pos + Ball_Mid) <= 252 && (Ball_Y_Pos + Ball_SizeY) < 385 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 385 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 130 && (Ball_X_Pos + Ball_Mid) <= 202 && (Ball_Y_Pos + Ball_SizeY) < 352 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 352 - 4'd5)
+														|| ((Ball_X_Pos + Ball_Mid) >= 330 && (Ball_X_Pos + Ball_Mid) <= 402 && (Ball_Y_Pos + Ball_SizeY) < 377 + 4'd5 && (Ball_Y_Pos + Ball_SizeY) >= 377 - 4'd5)
 											)			
 					begin
 						Ball_Y_Motion <= -3;
-						count <= (count + 1);
+						jump_counter <= jump_counter + 1;
 					end
 				// If we dont hit a platform
 				else
@@ -240,8 +250,8 @@ module  ball ( input Reset, frame_clk,
    
     assign BallY = Ball_Y_Pos;
    
-    assign count = counter;
-	//assign BallS = Ball_Size;
+   assign count = jump_counter;
+    //assign BallS = Ball_Size;
     
 
 endmodule
